@@ -2,17 +2,19 @@
     "manifest_version": 3,
     "name": "productivity web blocker",
     "version": "0.0.1",
-    
     "description": "Blocks websites",
+    "permissions": ["scripting", "activeTab", "storage"],
     "action": {
         "default_popup": "index.html"
     },
     "content_scripts": [
-      {
-        "js": ["content.js"],
-        "matches": [
-          "https://*/*"
-        ]
-      }
+        {
+            "js": [
+                "content.js"
+            ],
+            "matches": [
+                "https://*/*"
+            ]
+        }
     ]
 }
