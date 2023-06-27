@@ -81,10 +81,8 @@ const sites = [
     "digg.com",
     "divxme.com",
     "divxstage.to",
-    "docs.google.com",
     "dpadd.com",
     "draynor.net",
-    "drive.google.com",
     "dropvideo.com",
     "dzone.com",
     "ebaumsworld.com",
@@ -342,7 +340,7 @@ const sites = [
     "zetaboards.com",
     "zifboards.com",
     "zybez.net",
-    "zynga.com"
+  ,  "zynga.com"
 ]
 
 chrome.storage.local.get(["toggle"]).then((res) => {
@@ -350,32 +348,33 @@ chrome.storage.local.get(["toggle"]).then((res) => {
         // check on initial load
         sites.map(e => {
             if (window.location.href.includes(e)) {
-                document.body.innerHTML = `
-                    <style>
-                        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap');
-                        * { padding: 0; margin: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-                        body { display: grid; place-items: center; height: 100vh; background-color: salmon; }
-                        h1 { color: rgb(175, 50, 50); opacity: 0.75; font-size: 10rem; text-align: center; }
-                        p { color: rgb(175, 50, 50); opacity: 0.65; font-size: 2rem; text-align: center; }
-                    </style>
-                    <div>
-                        <h1>BLOCKED</h1>
-                        <p>redirecting to google.com</p>
-                    </div>
-                `
-                document.head.innerHTML = `
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Website Blocked</title>
-                `
+                let seconds = 5
+                setInterval(() => {
+                    document.head.innerHTML = `
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Website Blocked</title>
+                    `
+                    document.body.innerHTML = `
+                        <style>
+                            @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@900&display=swap');
+                            * { padding: 0; margin: 0; box-sizing: border-box; font-family: 'Source Code Pro', monospace; }
+                            body { display: grid; place-items: center; height: 100vh; background-color: salmon; }
+                            h1 { color: rgb(175, 50, 50); opacity: 0.75; font-size: 10rem }
+                        </style>
+                        <div>
+                            <h1>BLOCKED ${String(seconds)}s</h1>
+                        </div>
+                    `
+                    if (seconds !== 0) {
+                        seconds -= 1
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = "https://www.google.com"
+                        }, 1000);
+                    }
+                }, 1000);
             }
         })
-
-        // redirect in five seconds
-        setTimeout(() => {
-            sites.map(e => {
-                if (window.location.href.includes(e)) window.location.href = "https://www.google.com"
-            })
-        }, 5000)
     }
 })
