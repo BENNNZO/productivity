@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "productivity web blocker",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Blocks websites",
     "icons": {
         "16": "icons/icon16.png",
