@@ -1,5 +1,6 @@
 const toggle = document.getElementById("toggle_button")
 const knob = document.getElementById("slider_knob")
+const github = document.querySelector(".github")
 
 chrome.storage.local.get(["toggle"]).then((res) => {
     let toggleState = res.toggle
@@ -17,4 +18,8 @@ chrome.storage.local.get(["toggle"]).then((res) => {
 
         chrome.storage.local.set({ toggle: toggleState })
     })
+})
+
+github.addEventListener("click", () => {
+    window.open("https://github.com/BENNNZO/productivity")
 })
