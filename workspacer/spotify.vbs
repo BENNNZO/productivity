@@ -1,1 +1,0 @@
-CreateObject("WScript.Shell").Run("spotify:user:8aller:playlist:4aoBDuMJnk4Oza13a8Fnbo")
