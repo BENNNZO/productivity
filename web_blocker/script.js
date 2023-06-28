@@ -1,14 +1,20 @@
 const toggle = document.getElementById("toggle_button")
-const text = document.getElementById("text")
+const knob = document.getElementById("slider_knob")
 
 chrome.storage.local.get(["toggle"]).then((res) => {
     let toggleState = res.toggle
     
-    text.innerText = toggleState
+    document.body.classList = res.toggle ? "on" : "off"
+    knob.classList = res.toggle ? "on" : "off"
+    knob.style.left = toggleState ? "25px" : "0px"
     
     toggle.addEventListener("click", async () => {
         toggleState = !toggleState
-        text.innerText = toggleState
+        
+        document.body.classList = toggleState ? "on" : "off"
+        knob.classList = toggleState ? "on" : "off"
+        knob.style.left = toggleState ? "25px" : "0px"
+
         chrome.storage.local.set({ toggle: toggleState })
     })
 })
